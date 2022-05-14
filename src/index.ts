@@ -54,7 +54,7 @@ app.get("/", (req: express.Request, res: express.Response, next: express.NextFun
 
         let nickname: string = '';
         if(result.length != 0) {
-            nickname = result[0].nickname + ' 님';
+            nickname = result[0].nickname + '님';
         }
       
         return res.render('home',{

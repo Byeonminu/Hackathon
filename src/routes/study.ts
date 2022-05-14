@@ -16,8 +16,13 @@ studyRouter.get('/', (req:express.Request, res:express.Response, next:express.Ne
 
         db.query('select * from study', (err, result)=>{
             if(err) next(err);
-            console.log('모두 출력 : ', result);
+                
+          let nickname: string = '';
+          if(req.session.isLogined){
+                  nickname = req.user + '님';
+          }
            return res.render('study',{
+                   user_nickname: nickname,
                    studylist: result
            });
         })
@@ -28,11 +33,14 @@ studyRouter.get('/', (req:express.Request, res:express.Response, next:express.Ne
 
 studyRouter.get('/new', (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
-        // db.query('insert into test (id) values (300)', (err2, result2)=>{
-        //     res.send('router success');
-        // })
+        if(!req.session.isLogined){
+                return res.redirect('/');
+        }
+        else{
+                return res.render('studycreate');
+        }
 
-        return res.render('studycreate');
+     
 
 });
 
@@ -40,7 +48,6 @@ studyRouter.get('/new', (req: express.Request, res: express.Response, next: expr
 studyRouter.post('/new', (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
         db.query('select * from user where nickname = ?', [req.user], (err2, result2) =>{
-                console.log('이메일 들어가나', result2[0]);
                 db.query('insert into study (user_email, title, description, nickname) values (?, ?, ?, ?) ', [result2[0].email, req.body.title, req.body.description, req.user], (err, result) => {
                         if (err) next(err);
 
@@ -54,13 +61,24 @@ studyRouter.post('/new', (req: express.Request, res: express.Response, next: exp
 });
 
 
+studyRouter.post('/apply', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+
+        db.query('select * from user where nickname = ?', [req.user], (err2, result2) => {
+                db.query('insert into studygroup (study_id, applicant_email, applicant_nickname) values (?, ?, ?) ', [req.body.study_id, result2[0].email, result2[0].nickname], (err, result) => {
+                        if (err) next(err);
+
+                        return res.redirect('/study');
+                })
+        })
+
+});
+
 studyRouter.get('/:id', (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
         db.query('select * from study where id = ?',[req.params.id] ,(err, result)=>{
             if(err) next(err);
                 let writing: study;
             if(result.length !=0){
-                    console.log('정보 : ', result[0]);
                     writing = {
                             user_email: result[0].user_email,
                             title: result[0].title,
@@ -70,11 +88,21 @@ studyRouter.get('/:id', (req: express.Request, res: express.Response, next: expr
                     }
             }
 
+                let nickname: string = '';
+                if (req.session.isLogined) {
+                        nickname = req.user + '님';
+                }
+
                 return res.render('studycontent', {
-                        writing: writing
+                        writing: writing,
+                        study_id : req.params.id,
+                        user_nickname: nickname
                 } );
         })
 
        
 
 });
+
+
+

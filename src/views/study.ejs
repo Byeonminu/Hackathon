@@ -6,6 +6,16 @@
 </head>
 
 <body>
+    <div style="text-align: right">
+        <%= user_nickname %>
+    </div>
+    <% let islogined; %>
+        <% if(user_nickname !='' ){ %>
+            <div style="text-align: right"><a href="/auth/logout">logout</a></div>
+            <% } else{ %>
+    
+                <% } %>
+                
     <h1 style="text-align: center"><a href="/">포스텍 개발자 다모임</a></h1>
     <h4 style="text-align: right"><a href="/study/new">새 스터티 만들기</a></h4>
     

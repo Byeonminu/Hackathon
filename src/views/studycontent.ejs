@@ -6,6 +6,15 @@
 </head>
 
 <body>
+    <div style="text-align: right">
+        <%= user_nickname %>
+    </div>
+    <% let islogined; %>
+        <% if(user_nickname !='' ){ %>
+            <div style="text-align: right"><a href="/auth/logout">logout</a></div>
+            <% } else{ %>
+    
+                <% } %>
     <h1 style="text-align: center"><a href="/">포스텍 개발자 다모임</a></h1>
     <a href="/study">스터디 모집 </a>
     <a href="/qna"> 질문 게시판</a>
@@ -14,6 +23,12 @@
         <%= "작성자 : " + writing.nickname %>
         <br/>
         <%= "작성 날짜 : " + writing.createat.toLocaleString() %>
+    </div>
+    <div style="text-align: right">
+    <form action="/study/apply" method="post">
+        <input type="hidden" name="study_id" value= "<%= study_id %>">
+            <input type="submit" value="지원하기">
+    </form>
     </div>
     <div>
         <%= writing.description %>
