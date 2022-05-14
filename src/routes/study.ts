@@ -8,7 +8,7 @@ studyRouter.get('/', (req:express.Request, res:express.Response, next:express.Ne
         // db.query('insert into test (id) values (300)', (err2, result2)=>{
         //     res.send('router success');
         // })
+        
        return res.render('study');
     
 });
-

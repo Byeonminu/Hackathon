@@ -1,7 +1,17 @@
 import * as express from "express"
+import passport from 'passport';
+// import  passport  from "../passport";
+import bcrypt  from 'bcrypt';
 import {db} from '../../db/db';
 
 export const authRouter = express.Router();
+
+interface user{
+        email:string
+        password? :string
+        nickname:string
+}
+
 
 authRouter.get('/loginpage', (req:express.Request, res:express.Response, next:express.NextFunction) =>{
 
@@ -21,29 +31,34 @@ authRouter.get('/registerpage', (req: express.Request, res: express.Response, ne
 
 authRouter.post('/register', (req: express.Request, res: express.Response, next: express.NextFunction) => {
         
-
-        db.query('insert into user (email, password, nickname) values(?, ?, ?)', [req.body.email, req.body.new_pw1, req.body.nickname], (err, result) =>{
+        const password = bcrypt.hashSync(req.body.new_pw1, 10);
+        db.query('insert into user (email, password, nickname) values(?, ?, ?)', [req.body.email, password, req.body.nickname], (err, result) =>{
                 if(err) next(err);
-                console.log('wjdqh', req.body.email, req.body.new_pw1, req.body.nickname );
+                // const user: user = {
+                //         email: req.body.email,
+                //         nickname: req.body.nickname
+                // };
                 return res.redirect('/');
+                // req.login(user, function (err) { // auto login
+                //         if (err) { return next(err); }
+                //         req.session.identifier = user[0].identifier;
+                //         req.session.isLogined = true;
+                //         req.session.save(function () {
+                                
+                //         })
+                // });
         })
 
 });
 
-authRouter.post('/login', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-
-
-        db.query('select * from user where email = ? and password = ? ', [req.body.email, req.body.user_pw], (err, result) => {
-                console.log('로그인', req.body.email, req.body.new_pw1);
-                if (err) next(err);
-                if(result.length !=0){
-                        console.log('result : ', result);
-                        return res.redirect('/');
-                }
-                else{
-                        return res.redirect('/');
-                }
-
-        })
-
+authRouter.post('/login',
+        passport.authenticate('local', 
+        { 
+                failureRedirect: '/auth/loginpage' 
+        }),
+        function (req: express.Request, res: express.Response) {
+        req.session.isLogined = true
+        req.session.save(function () {
+                return res.redirect('/');
+        });
 });
