@@ -79,7 +79,7 @@ body {
 
 .signin_box {
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 25%;
 }
 
@@ -90,4 +90,20 @@ body {
 .desc {
     width: 750px;
     height: 300px;
+
+}
+#comment_box{
+    width: 750px;
+    height: 100px;
+}
+
+
+.writing-list{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.real_description{
+    font-size: 20px;
+    font-family: Century Gothic, sans-serif;
 }

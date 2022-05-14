@@ -6,19 +6,19 @@
 </head>
 
 <body>
+    
     <h1 class="title"><a href="/" class="lettering">포스텍 개발자 다모임</a></h1>
+    <div class="auth" style="text-align:left; padding-bottom:15px; margin-bottom:15px;"><a href="/qna" class="lettering" style="font-size:20px; padding-left: 30px;">질문 게시판 </a></div>
 
-    <a href="/qna"> 질문 게시판</a>
 
-        <form action="/qna/new" method="post">
-            제목
-            <p>
-                <input type="text" name="title" placeholder="제목">
-            </p>
-            내용
+        <form action="/qna/new" method="post" class="signin_box">
+        <fieldset class="sign" style="padding-left:20px">
+            <h2>제목</h2>
+            <p><input type="text" name="title" placeholder="제목"></p>
+            <h2>내용</h2>
             <p><textarea class="desc" name="description" placeholder="내용"> </textarea></p>
             <br>
             <input type="submit" value="질문 올리기">
-        </form>
+            </form>
 
 </body>
