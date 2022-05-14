@@ -1,5 +1,6 @@
 import express from "express"
-import { router_test } from "./routes/test";
+import { authRouter } from "./routes/auth";
+import { studyRouter } from "./routes/study";
 import path from "path"
 import cookieParser from 'cookie-parser';
 
@@ -15,11 +16,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use("/test", router_test);
+app.use("/auth", authRouter);
+app.use("/study", studyRouter);
 
 app.get("/", (req: express.Request, res: express.Response) => {
     res.render('home');
