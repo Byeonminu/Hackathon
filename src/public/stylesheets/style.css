@@ -1,76 +1,93 @@
+body {
+    margin: 0px;
+}
 
-.title{
+.title {
     text-align: center;
     font-family: Century Gothic, sans-serif;
     background-color: #C80150;
     margin-bottom: 0;
+    margin-top: 0;
     padding: 20px;
 }
 
-.lettering{
-    color:white;
-    padding:10px;
+.lettering {
+    color: white;
+    padding: 10px;
     text-decoration-line: none;
     text-align: center;
 }
-.lettering:hover{
-    color:antiquewhite;
+
+.lettering:hover {
+    color: antiquewhite;
     text-decoration-line: none;
 }
-.words{
-    color:black;
-    text-align:center;
-    font-size:40px;
+
+.words {
+    color: black;
+    text-align: center;
+    font-size: 40px;
 }
 
-.auth{
+.auth {
     background-color: #C80150;
     text-align: right;
 }
-.container{
-    display:flex;
+
+.container {
+    display: flex;
     justify-content: space-evenly;
-    margin:0;
+    margin: 0;
 }
-.board{
-    margin:30px;
-    width:600px;
-    height:600px;
+
+.board {
+    margin: 30px;
+    width: 600px;
+    height: 600px;
     background-color: #C80150;
     text-align: center;
     border-radius: 20px;
     opacity: 0.7;
 }
 
-#query{
+#query {
     margin-top: 30px;
     text-align: center;
     background-image: url("./answer_ponix.png");
     background-size: cover;
-    width:600px;
-    height:600px;
+    width: 600px;
+    height: 600px;
     border-radius: 20px;
 }
-#study{
+
+#study {
     margin-top: 30px;
     text-align: center;
     background-image: url('./studying_ponix.png');
     background-size: cover;
-    width:600px;
-    height:600px;
+    width: 600px;
+    height: 600px;
     border-radius: 20px;
 }
 
-.sign{
+.sign {
     border-color: #C80150;
     margin-top: 100px;
-    width:800px;
-    height:600px;
+    width: 800px;
+    height: 600px;
 }
-.signin_box{
-    position:absolute;
-    top:10%; left:25%;
+
+.signin_box {
+    position: absolute;
+    top: 10%;
+    left: 25%;
 }
-.info{
-    margin-left:250px;
+
+.info {
+    margin-left: 250px;
+}
+
+.desc {
+    width: 750px;
+    height: 300px;
 }

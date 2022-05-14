@@ -2,6 +2,7 @@ import express from "express"
 import logger from 'morgan'
 import { authRouter } from "./routes/auth";
 import { studyRouter } from "./routes/study";
+import { qnaRouter } from "./routes/qna";
 import path from "path"
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
@@ -45,6 +46,7 @@ require('./passport')(app);
 
 app.use("/auth", authRouter);
 app.use("/study", studyRouter);
+app.use("/qna", qnaRouter);
 
 app.get("/", (req: express.Request, res: express.Response, next: express.NextFunction) => {
 

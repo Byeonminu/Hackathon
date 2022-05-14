@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= questions.title %> 질문</title>
+    
+</head>
+
+<body>
+    <div style="text-align: right">
+        <%= user_nickname %>
+    </div>
+    <% let islogined; %>
+        <% if(user_nickname !='' ){ %>
+            <div style="text-align: right"><a href="/auth/logout">logout</a></div>
+            <% } else{ %>
+    
+                <% } %>
+    <h1 class="title"><a href="/" class="lettering">포스텍 개발자 다모임</a></h1>
+    <a href="/qna">질문 게시판</a>
+    <h2 style="text-align: center"><%= questions.title %></h2>
+    <div style="text-align: right">
+        <%= "작성자 : " + questions.nickname %>
+        <br/>
+        <%= "작성 날짜 : " + questions.createat.toLocaleString() %>
+    </div>
+
+    <div>
+        <%= questions.description %>
+    </div>
+    <br/>
+    <form action="/qna/new-comment" method="post">
+         Comment
+            <input type="hidden" name="qna_id" value="<%= qna_id %>">
+            <p><textarea class="desc" name="comment" placeholder="댓글 달기"> </textarea></p>
+            <input type="submit" value="댓글 작성하기">
+    </form>
+  
+
+    <% for(var i=0; i < comments.length; i++) { %>
+    
+            <br>
+            <p>
+                <li> <%= (i+1) %>번 댓글  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= comments[i].description %> 
+    
+                    <%= " - " + comments[i].createat.toLocaleString() %>
+                </li>
+            </p>
+            <hr />
+    
+            <% } %>
+
+
+</body>
+
+
+</html>

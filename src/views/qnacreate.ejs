@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<head>
+    <title>새 질문 올리기</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <h1 class="title"><a href="/" class="lettering">포스텍 개발자 다모임</a></h1>
+
+    <a href="/qna"> 질문 게시판</a>
+
+        <form action="/qna/new" method="post">
+            제목
+            <p>
+                <input type="text" name="title" placeholder="제목">
+            </p>
+            내용
+            <p><textarea class="desc" name="description" placeholder="내용"> </textarea></p>
+            <br>
+            <input type="submit" value="질문 올리기">
+        </form>
+
+</body>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>포개다 Q&A 페이지</title>
+    
+</head>
+
+<body>
+    <div style="text-align: right">
+        <%= user_nickname %>
+    </div>
+    <% let islogined; %>
+        <% if(user_nickname !='' ){ %>
+            <div style="text-align: right"><a href="/auth/logout">logout</a></div>
+            <% } else{ %>
+    
+                <% } %>
+                
+    <h1 class="title"><a href="/" class="lettering">포스텍 개발자 다모임</a></h1>
+    <h4 style="text-align: right"><a href="/qna/new"> 새 질문 올리기 </a></h4>
+    
+    <% for(var i=0; i < questions_list.length; i++) { %>
+    <% var user="/qna/" +questions_list[i].id; %>
+
+        <br>
+        <p>
+            <li><a href= <%=user %>> <%= questions_list[i].title %> </a>
+
+                <%= " - " + questions_list[i].createat.toLocaleString() %>
+            </li>
+        </p>
+        <hr />
+
+        <% } %>
+
+</body>
+
+
+</html>
