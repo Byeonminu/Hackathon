@@ -2,3 +2,5 @@
 db/db.ts
 
 node_modules/
+
+sessions/

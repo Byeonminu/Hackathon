@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<head>
+    <title>새 스터디 만들기</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <h1 class="basic_title"><a href="/">포스텍 개발자 다모임</a></h1>
+    <a href="/study">스터디 모집 </a>
+    <a href="/qna"> 질문 게시판</a>
+
+        <form action="/study/new" method="post">
+            제목
+            <p>
+                <input type="text" name="title" placeholder="제목">
+            </p>
+            내용
+            <p><textarea class="desc" name="description" placeholder="내용"> </textarea></p>
+            <br>
+            <input type="submit" value="create">
+        </form>
+
+</body>

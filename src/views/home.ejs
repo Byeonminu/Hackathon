@@ -8,7 +8,14 @@
 </head>
 
 <body>
-    
+    <div style="text-align: right"><%= user_nickname %></div>
+    <% let islogined; %>
+    <% if(user_nickname != ''){ %>
+        <div style="text-align: right"><a href="/auth/logout">logout</a></div>
+    <% } else{ %>
+
+        <% } %>
+
         <h1 class="title" ><a href="/" class="lettering">포스텍 개발자 다모임</a></h1>
         <div class="auth" ><a href="/auth/loginpage" class = "lettering" style="font-size:30px">로그인</a></div>
         <div class="auth" ><a href="/auth/registerpage" class="lettering" style="font-size:30px">회원가입</a></div>
@@ -17,6 +24,7 @@
     <div id="study"><a href="/study" class="lettering" style="font-size:40px; color:black">스터디 모집 </a></div>
     <div id="query"><a href="/qna" class="lettering" style="font-size:40px; color:black"> 질문 게시판</a></div>    
 </div>
+
 
 
 
