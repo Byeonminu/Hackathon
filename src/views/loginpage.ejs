@@ -2,24 +2,25 @@
 <html>
 <head>
     <title>포개다 로그인</title>
-    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
 </head>
 
 <body>
-    <h1 style="text-align: center"><a href="/">포스텍 개발자 다모임</a></h1>
-    <form action="/auth/login" method="post">
-        <fieldset>
+    <h1 class="title"><a href="/" class="lettering">포스텍 개발자 다모임</a></h1>
+    <form action="/auth/login" method="post" class="signin_box">
+        <fieldset class="sign">
             <legend> Sign in </legend>
     
-            <label for="user_id"> 이메일 </label>
-            <input type="text" id="email" name="email" size="10" autofocus>
-    
-            <label for="user_pw"> 비밀번호 </label>
+            <label for="user_id" style="font-size:20px"> 이메일 </label>
+            <input type="text" id="email" name="email" size="20" autofocus>
+            <label for="user_pw" style="font-size:20px">&emsp; 비밀번호 </label>
             <input type="password" id="user_pw" name="user_pw">
             <input type="submit" value="login">
+            <img src="\stylesheets\login_ponix.png" width="70%" height="80%" style="margin-left:150px; margin-top:50px" alt = "login_ponix">
     </form>
 
-
+    
 </body>
 
 

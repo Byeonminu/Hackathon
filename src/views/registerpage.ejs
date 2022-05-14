@@ -2,15 +2,16 @@
 <html>
 <head>
     <title>포개다 로그인</title>
-    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
 </head>
 
 <body>
-    <h1 style="text-align: center"><a href="/">포스텍 개발자 다모임</a></h1>
-<form action="/auth/register" method="post">
-        <legend> Sign up </legend>
-        <ul>
-
+    <h1 class="title"><a href="/" class="lettering">포스텍 개발자 다모임</a></h1>
+<form action="/auth/register" method="post" class="signin_box">
+    <fieldset class="sign"> 
+        <legend>Sign up</legend>
+        <ul class="info">
             <li> <label class="reg" for="email"> 이메일 <em> * </em> </label>
                 <input type="text" id="email" name="email" size="20" autocomplete="on" required>
             </li>
@@ -23,9 +24,9 @@
             <li> <label class="reg" for="nickname"> nickname <em> * </em> </label>
                 <input type="text" id="nickname" name="nickname" size="20" required>
             </li>
-
         </ul>
-        <input type="submit" value="가입하기">
+        <input type="submit" value="가입하기" style="margin-left:300px">
+        <img src="\stylesheets\signup_ponix.png" width="50%" height="70%" style="margin-left:200px" alt = "signup_ponix">
 </form>
 
 
