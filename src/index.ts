@@ -48,12 +48,14 @@ app.use("/study", studyRouter);
 
 app.get("/", (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
-    db.query('select * from user where email = ?',[req.user], (err, result) =>{
+    db.query('select * from user where nickname = ?',[req.user], (err, result) =>{
         if(err) next(err);
         console.log('유저 : ', req.user);
 
         let nickname: string = '';
-        if(result.length !=0) nickname = result[0].nickname + ' 님';
+        if(result.length != 0) {
+            nickname = result[0].nickname + ' 님';
+        }
       
         return res.render('home',{
             user_nickname: nickname

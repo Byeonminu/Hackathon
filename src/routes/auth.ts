@@ -62,3 +62,11 @@ authRouter.post('/login',
                 return res.redirect('/');
         });
 });
+
+
+authRouter.get('/logout', function (req, res) {
+        req.session.destroy(err => {
+                return res.redirect('/');
+        });
+
+});

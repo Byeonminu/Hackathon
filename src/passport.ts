@@ -39,11 +39,11 @@ module.exports = function (app){
             }))
         
         passport.serializeUser<any, any>((user, done) => {
-            done(null, user.email);
+            done(null, user.nickname);
         });
 
-    passport.deserializeUser(function (email, done) {
-        done(null, email);
+    passport.deserializeUser(function (nickname, done) {
+        done(null, nickname);
     });
 
 

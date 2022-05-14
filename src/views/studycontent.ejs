@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= writing.title %> 스터티 모집</title>
+    
+</head>
+
+<body>
+    <h1 style="text-align: center"><a href="/">포스텍 개발자 다모임</a></h1>
+    <a href="/study">스터디 모집 </a>
+    <a href="/qna"> 질문 게시판</a>
+    <h2 style="text-align: center"><%= writing.title %></h2>
+    <div style="text-align: right">
+        <%= "작성자 : " + writing.nickname %>
+        <br/>
+        <%= "작성 날짜 : " + writing.createat.toLocaleString() %>
+    </div>
+    <div>
+        <%= writing.description %>
+    </div>
+   
+</body>
+
+
+</html>
