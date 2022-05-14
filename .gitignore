@@ -1,0 +1,4 @@
+#database config
+db/db.ts
+
+node_modules/
