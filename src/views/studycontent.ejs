@@ -33,7 +33,22 @@
     <div>
         <%= writing.description %>
     </div>
-   
+    
+    <% for(var i=0; i < applicants_list.length; i++) { %>
+
+    
+            <br>
+            <p>
+                <li> <%= (i+1) %>번 지원자 <%= ' 이메일: ' + applicants_list[i].applicant_email %> </a>
+    
+                    <%= " - " + applicants_list[i].applyat.toLocaleString() %>
+                </li>
+            </p>
+            <hr />
+    
+            <% } %>
+
+
 </body>
 
 

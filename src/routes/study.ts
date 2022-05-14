@@ -11,6 +11,12 @@ interface study{
         nickname:string;
 }
 
+interface applicants{
+        applicant_email:string;
+        applicant_nickname: string;
+        applyat:string;
+}
+
 
 studyRouter.get('/', (req:express.Request, res:express.Response, next:express.NextFunction) =>{
 
@@ -87,17 +93,45 @@ studyRouter.get('/:id', (req: express.Request, res: express.Response, next: expr
                             nickname: result[0].nickname,
                     }
             }
+            let applicants_list:applicants[] = [];
+            let i:number;
+            if(result[0].nickname == req.user){ // 글을 작성한 사람일 때
+                db.query('select * from studygroup where study_id = ?', [req.params.id], (err, applicant) =>{
+                        for (i = 0; i < applicant.length; i++) {
+                                applicants_list.push({
+                                        applicant_email: applicant[i].applicant_email,
+                                        applicant_nickname: applicant[i].applicant_nickname,
+                                        applyat: applicant[i].applyat
+                                })
+                        };
+                        console.log("지원자: ", applicants_list);
+                        let nickname: string = '';
+                        if (req.session.isLogined) {
+                                nickname = req.user + '님';
+                        }
 
-                let nickname: string = '';
-                if (req.session.isLogined) {
-                        nickname = req.user + '님';
-                }
+                        return res.render('studycontent', {
+                                writing: writing,
+                                study_id: req.params.id,
+                                user_nickname: nickname,
+                                applicants_list: applicants_list
+                        });
+                })
+            }
+            else{
+                    let nickname: string = '';
+                    if (req.session.isLogined) {
+                            nickname = req.user + '님';
+                    }
 
-                return res.render('studycontent', {
-                        writing: writing,
-                        study_id : req.params.id,
-                        user_nickname: nickname
-                } );
+                    return res.render('studycontent', {
+                            writing: writing,
+                            study_id: req.params.id,
+                            user_nickname: nickname,
+                            applicants_list: applicants_list
+                    });
+            }
+                
         })
 
        
