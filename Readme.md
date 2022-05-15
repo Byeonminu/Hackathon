@@ -41,6 +41,16 @@
 <br/>
 <br/>
 
+## __Getting started__
+* * *
+    git clone https://github.com/Byeonminu/Postech-Developer-Community.git
+    cd Postech-Developer-Community
+    npm install
+    // email & db config setting 
+    npm start
+<br/>
+<br/>
+
 ## **Database**
 * * *
 <center><img src="./src/public/stylesheets/db1.png" width = "800px"> </center>
