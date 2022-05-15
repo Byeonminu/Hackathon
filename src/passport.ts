@@ -18,17 +18,17 @@ module.exports = function (app){
                 db.query('select * from user where email =?', [email], (err, result) =>{
                     if(err) done(err);
                     if(result.length == 0){
-                        console.log('아이디 틀림')
+                        // console.log('아이디 틀림')
                         return done(null, false, { message: 'Incorrect email' })
                     }
                     else{
                         bcrypt.compare(pwd, result[0].password, (err1, result1) => {
                             if(result1){
-                                console.log('성공', result[0])
+                                // console.log('성공', result[0])
                                 return done(null, result[0], { message: 'Login Success' });
                             }
                             else{
-                                console.log('비번 틀림')
+                                // console.log('비번 틀림')
                                 return done(null, false, { message: 'Incorrect password' })
                             }
                         })
