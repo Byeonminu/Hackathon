@@ -11,7 +11,7 @@ import session from "express-session";
 import sessionFileStore from "session-file-store";
 import { db } from '../db/db';
 import { nextTick } from "process";
-
+import flash from 'connect-flash';
 
 class App {
     public application: express.Application;
@@ -38,6 +38,7 @@ app.use(session({
     cookie: { httpOnly: true },
     store: new Filestore()
 }))
+app.use(flash());
 
 require('./passport')(app);
 
@@ -52,7 +53,6 @@ app.get("/", (req: express.Request, res: express.Response, next: express.NextFun
 
     db.query('select * from user where nickname = ?',[req.user], (err, result) =>{
         if(err) next(err);
-        console.log('유저 : ', req.user);
 
         let nickname: string = '';
         if(result.length != 0) {

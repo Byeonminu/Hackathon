@@ -3,7 +3,8 @@ declare global {
     namespace Express {
         interface Request {
             user?: any;
-            params?: any
+            params?: any;
+            flash ? : any
         }
     }
 }
