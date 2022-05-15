@@ -4,3 +4,6 @@ db/db.ts
 node_modules/
 
 sessions/
+
+email information
+config/senderinfo.ts

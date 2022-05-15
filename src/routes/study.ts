@@ -1,7 +1,8 @@
 import * as express from "express"
 import {db} from '../../db/db';
-
+import nodemailer from 'nodemailer';
 export const studyRouter = express.Router();
+import {senderinfo} from '../../config/senderinfo';
 
 interface study{
         user_email:string;
@@ -71,13 +72,41 @@ studyRouter.post('/apply', (req: express.Request, res: express.Response, next: e
         if(!req.session.isLogined){
                 return res.redirect('/auth/loginpage');
         }
-        db.query('select * from user where nickname = ?', [req.user], (err2, result2) => {
-                db.query('insert into studygroup (study_id, applicant_email, applicant_nickname) values (?, ?, ?) ', [req.body.study_id, result2[0].email, result2[0].nickname], (err, result) => {
-                        if (err) next(err);
+        else{
+                db.query('select * from user where nickname = ?', [req.user], (err2, result2) => {
+                        db.query('insert into studygroup (study_id, applicant_email, applicant_nickname) values (?, ?, ?) ', [req.body.study_id, result2[0].email, result2[0].nickname], (err, result) => {
+                                db.query('select * from study where id = ?', [req.body.study_id], async(err, recruit) =>{
 
-                        return res.redirect('/study');
+                              
+                                if (err) next(err);
+                                let transporter = nodemailer.createTransport({
+                                        service: 'gmail',
+                                        host: 'smtp.gmail.com',
+                                        port: 587,
+                                        secure: false,
+                                        auth: {
+
+                                                user: senderinfo.user,
+                                                pass: senderinfo.pass,
+                                        },
+                                });
+                                let info = await transporter.sendMail({
+
+                                        from: `"포개다" <${senderinfo.user}>`,
+
+                                        to: recruit[0].user_email,
+
+                                        subject: '[포개다] 새 지원자가 등록되었습니다.',
+
+                                        html: `<b>'${req.user}'님이  '${recruit[0].title}'에 지원 하셨습니다.</b>`,
+                                });
+                                console.log('Message sent: %s', info.messageId);
+                                return res.redirect('/study');
+                                })
+                        })
                 })
-        })
+        }
+       
 
 });
 
