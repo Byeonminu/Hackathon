@@ -37,22 +37,31 @@ authRouter.post('/register', (req: express.Request, res: express.Response, next:
         const email:string = req.body.email;
         const is_postech:string[] = email.split('@');
         if (is_postech[1] == "postech.ac.kr"){
-                db.query('insert into user (email, password, nickname) values(?, ?, ?)', [req.body.email, password, req.body.nickname], (err, result) => {
-                        if (err) next(err);
-                        // const user: user = {
-                        //         email: req.body.email,
-                        //         nickname: req.body.nickname
-                        // };
-                        return res.redirect('/');
-                        // req.login(user, function (err) { // auto login
-                        //         if (err) { return next(err); }
-                        //         req.session.identifier = user[0].identifier;
-                        //         req.session.isLogined = true;
-                        //         req.session.save(function () {
+                if(req.body.new_pw1 == req.body.new_pw2){
+                        db.query('insert into user (email, password, nickname) values(?, ?, ?)', [req.body.email, password, req.body.nickname], (err, result) => {
+                                if (err) next(err);
+                                // const user: user = {
+                                //         email: req.body.email,
+                                //         nickname: req.body.nickname
+                                // };
+                                return res.redirect('/');
+                                // req.login(user, function (err) { // auto login
+                                //         if (err) { return next(err); }
+                                //         req.session.identifier = user[0].identifier;
+                                //         req.session.isLogined = true;
+                                //         req.session.save(function () {
 
-                        //         })
-                        // });
-                })
+                                //         })
+                                // });
+                        })
+                }
+                else{
+                        req.flash('error', '비밀번호는 같아야 합니다.');
+                        req.session.save(() => {
+                                return res.redirect('/auth/registerpage');
+                        })
+                }
+                
         }
         else{
                 req.flash('error', '포스텍 이메일을 사용해주세요.');
