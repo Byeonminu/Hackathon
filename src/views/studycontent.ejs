@@ -44,7 +44,7 @@
                         <p>
                             <li> <%= (i+1) %>번 지원자 <%= ' 이메일: ' + applicants_list[i].applicant_email %> </a>
                 
-                                <div style="float:right; margin-right:10px"><%= applicants_list[i].applyat.toLocaleString() %></div>
+                                <div style="float:right; margin-right:10px"><%= applicants_list[i].applicant_nickname%>, <%= applicants_list[i].applyat.toLocaleString() %></div>
                             </li>
                         </p>
                         <hr />

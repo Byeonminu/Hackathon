@@ -98,7 +98,8 @@ studyRouter.post('/apply', (req: express.Request, res: express.Response, next: e
 
                                         subject: '[포개다] 새 지원자가 등록되었습니다.',
 
-                                        html: `<b>'${req.user}'님이  '${recruit[0].title}'에 지원 하셨습니다.</b>`,
+                                        html: `<b> 안녕하세요. ${recruit[0].nickname}님 <br/>
+                                        '${req.user}'님이 방금 '${recruit[0].title}'에 지원 하셨습니다.</b>`,
                                 });
                                 console.log('Message sent: %s', info.messageId);
                                 return res.redirect('/study');
