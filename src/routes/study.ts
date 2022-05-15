@@ -68,7 +68,9 @@ studyRouter.post('/new', (req: express.Request, res: express.Response, next: exp
 
 
 studyRouter.post('/apply', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-
+        if(!req.session.isLogined){
+                return res.redirect('/auth/loginpage');
+        }
         db.query('select * from user where nickname = ?', [req.user], (err2, result2) => {
                 db.query('insert into studygroup (study_id, applicant_email, applicant_nickname) values (?, ?, ?) ', [req.body.study_id, result2[0].email, result2[0].nickname], (err, result) => {
                         if (err) next(err);

@@ -63,7 +63,7 @@ qnaRouter.post('/new', (req: express.Request, res: express.Response, next: expre
 
 qnaRouter.post('/new-comment', (req: express.Request, res: express.Response, next: express.NextFunction) => {
         if(!req.session.isLogined){
-                return res.redirect('/qna');
+                return res.redirect('/auth/loginpage');
         }
         else{
                 db.query('insert into comment (qna_id, description, nickname) values (?, ?, ?) ', [req.body.qna_id, req.body.comment, req.user], (err, result) => {
